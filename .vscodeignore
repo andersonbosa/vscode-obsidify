@@ -1,5 +1,7 @@
 .vscode/**
 .vscode-test/**
+.gitignore
+.gitattributes
 MEMORY.md
 TODO.md
 src/**

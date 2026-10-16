@@ -5,6 +5,24 @@
   "version": "1.0.0",
   "publisher": "andersonbosa",
   "license": "UNLICENSED",
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andersonbosa/vscode-obsidify.git"
+  },
+  "homepage": "https://github.com/andersonbosa/vscode-obsidify#readme",
+  "bugs": {
+    "url": "https://github.com/andersonbosa/vscode-obsidify/issues"
+  },
+  "keywords": [
+    "obsidian",
+    "wikilinks",
+    "backlinks",
+    "markdown",
+    "notes",
+    "zettelkasten",
+    "bookmarks"
+  ],
   "engines": {
     "vscode": "^1.101.0"
   },
