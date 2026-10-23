@@ -385,7 +385,7 @@
     "ci": "npm run compile && npm test && npm run package"
   },
   "devDependencies": {
-    "@types/node": "^22.20.4",
+    "@types/node": "^26.6.5",
     "@types/vscode": "^1.85.0",
     "@vscode/vsce": "^3.9.2",
     "typescript": "^5.5.4"
