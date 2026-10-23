@@ -1,0 +1,393 @@
+{
+  "name": "obsidify",
+  "displayName": "Obsidify",
+  "description": "Obsidian-style wikilinks, navigation, backlinks, and bookmarks for files in VS Code.",
+  "version": "1.0.0",
+  "publisher": "andersonbosa",
+  "license": "MIT",
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andersonbosa/vscode-obsidify.git"
+  },
+  "homepage": "https://github.com/andersonbosa/vscode-obsidify#readme",
+  "bugs": {
+    "url": "https://github.com/andersonbosa/vscode-obsidify/issues"
+  },
+  "keywords": [
+    "obsidian",
+    "wikilinks",
+    "backlinks",
+    "markdown",
+    "notes",
+    "zettelkasten",
+    "bookmarks"
+  ],
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:obsidify.backlinks",
+    "onView:obsidify.outgoingLinks",
+    "onView:obsidify.bookmarks",
+    "onCommand:obsidify.configureVault",
+    "onCommand:obsidify.openSettings",
+    "onCommand:obsidify.toggleBookmark",
+    "onCommand:obsidianfy.configureVault",
+    "onCommand:obsidianfy.refresh",
+    "onCommand:obsidianfy.insertLink",
+    "onCommand:obsidianfy.openTarget",
+    "onCommand:obsidianfy.createTarget",
+    "onCommand:obsidianfy.openAtLocation",
+    "onCommand:obsidianfy.toggleBookmark",
+    "onCommand:obsidianfy.addActiveBookmark",
+    "onCommand:obsidianfy.renameBookmark",
+    "onCommand:obsidianfy.removeBookmark",
+    "onCommand:obsidianfy.openBookmark",
+    "onCommand:obsidianfy.toggleBacklinksViewMode",
+    "onCommand:obsidianfy.toggleOutgoingViewMode",
+    "onCommand:obsidianfy.toggleBookmarksViewMode",
+    "onCommand:obsidianfy.toggleBacklinksExpandCollapseAll",
+    "onCommand:obsidianfy.toggleOutgoingExpandCollapseAll",
+    "onCommand:obsidianfy.toggleBookmarksExpandCollapseAll",
+    "onCommand:obsidianfy.changeBacklinksSortOrder",
+    "onCommand:obsidianfy.changeOutgoingSortOrder",
+    "onCommand:obsidianfy.changeBookmarksSortOrder",
+    "onCommand:obsidianfy.openSettings"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "obsidify",
+          "title": "Obsidify",
+          "icon": "resources/obsidify.svg"
+        }
+      ]
+    },
+    "views": {
+      "obsidify": [
+        {
+          "id": "obsidify.backlinks",
+          "name": "Backlinks",
+          "when": "obsidify.vaultReady"
+        },
+        {
+          "id": "obsidify.outgoingLinks",
+          "name": "Outgoing Links",
+          "when": "obsidify.vaultReady"
+        },
+        {
+          "id": "obsidify.bookmarks",
+          "name": "Bookmarks",
+          "when": "obsidify.vaultReady"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "obsidify.configureVault",
+        "title": "Obsidify: Choose Vault Folder"
+      },
+      {
+        "command": "obsidify.refresh",
+        "title": "Obsidify: Refresh Links",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "obsidify.insertLink",
+        "title": "Obsidify: Insert Wikilink"
+      },
+      {
+        "command": "obsidify.openTarget",
+        "title": "Obsidify: Open Wikilink Target"
+      },
+      {
+        "command": "obsidify.createTarget",
+        "title": "Obsidify: Create Missing Note"
+      },
+      {
+        "command": "obsidify.openAtLocation",
+        "title": "Obsidify: Open Link Source"
+      },
+      {
+        "command": "obsidify.toggleBookmark",
+        "title": "Obsidify: Toggle Bookmark",
+        "icon": "$(bookmark)"
+      },
+      {
+        "command": "obsidify.addActiveBookmark",
+        "title": "Obsidify: Add Current File to Bookmarks",
+        "icon": "$(add)"
+      },
+      {
+        "command": "obsidify.renameBookmark",
+        "title": "Obsidify: Rename Bookmark"
+      },
+      {
+        "command": "obsidify.removeBookmark",
+        "title": "Obsidify: Remove Bookmark"
+      },
+      {
+        "command": "obsidify.toggleBacklinksViewMode",
+        "title": "Obsidify: Toggle Backlinks Tree/List View",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "obsidify.toggleOutgoingViewMode",
+        "title": "Obsidify: Toggle Outgoing Links Tree/List View",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "obsidify.toggleBookmarksViewMode",
+        "title": "Obsidify: Toggle Bookmarks Tree/List View",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "obsidify.toggleBacklinksExpandCollapseAll",
+        "title": "Obsidify: Toggle Expand/Collapse All Backlinks",
+        "icon": "$(collapse-all)"
+      },
+      {
+        "command": "obsidify.toggleOutgoingExpandCollapseAll",
+        "title": "Obsidify: Toggle Expand/Collapse All Outgoing Links",
+        "icon": "$(collapse-all)"
+      },
+      {
+        "command": "obsidify.toggleBookmarksExpandCollapseAll",
+        "title": "Obsidify: Toggle Expand/Collapse All Bookmarks",
+        "icon": "$(collapse-all)"
+      },
+      {
+        "command": "obsidify.changeBacklinksSortOrder",
+        "title": "Obsidify: Sort Backlinks",
+        "icon": "$(sort-precedence)"
+      },
+      {
+        "command": "obsidify.changeOutgoingSortOrder",
+        "title": "Obsidify: Sort Outgoing Links",
+        "icon": "$(sort-precedence)"
+      },
+      {
+        "command": "obsidify.changeBookmarksSortOrder",
+        "title": "Obsidify: Sort Bookmarks",
+        "icon": "$(sort-precedence)"
+      },
+      {
+        "command": "obsidify.openSettings",
+        "title": "Obsidify: Settings",
+        "icon": "$(gear)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "obsidify.toggleBookmark",
+          "group": "navigation@2",
+          "when": "resourceScheme == file"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "obsidify.toggleBookmark",
+          "group": "navigation",
+          "when": "resourceScheme == file && !explorerResourceIsFolder"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "obsidify.addActiveBookmark",
+          "group": "navigation@1",
+          "when": "view == obsidify.bookmarks"
+        },
+        {
+          "command": "obsidify.refresh",
+          "group": "navigation@2",
+          "when": "view == obsidify.backlinks || view == obsidify.outgoingLinks || view == obsidify.bookmarks"
+        },
+        {
+          "command": "obsidify.toggleBacklinksExpandCollapseAll",
+          "group": "navigation@3",
+          "when": "view == obsidify.backlinks && obsidify.backlinksTreeMode"
+        },
+        {
+          "command": "obsidify.toggleOutgoingExpandCollapseAll",
+          "group": "navigation@3",
+          "when": "view == obsidify.outgoingLinks && obsidify.outgoingLinksTreeMode"
+        },
+        {
+          "command": "obsidify.toggleBookmarksExpandCollapseAll",
+          "group": "navigation@3",
+          "when": "view == obsidify.bookmarks && obsidify.bookmarksTreeMode"
+        },
+        {
+          "command": "obsidify.toggleBacklinksViewMode",
+          "group": "navigation@4",
+          "when": "view == obsidify.backlinks"
+        },
+        {
+          "command": "obsidify.toggleOutgoingViewMode",
+          "group": "navigation@4",
+          "when": "view == obsidify.outgoingLinks"
+        },
+        {
+          "command": "obsidify.toggleBookmarksViewMode",
+          "group": "navigation@4",
+          "when": "view == obsidify.bookmarks"
+        },
+        {
+          "command": "obsidify.changeBacklinksSortOrder",
+          "group": "navigation@5",
+          "when": "view == obsidify.backlinks"
+        },
+        {
+          "command": "obsidify.changeOutgoingSortOrder",
+          "group": "navigation@5",
+          "when": "view == obsidify.outgoingLinks"
+        },
+        {
+          "command": "obsidify.changeBookmarksSortOrder",
+          "group": "navigation@5",
+          "when": "view == obsidify.bookmarks"
+        },
+        {
+          "command": "obsidify.openSettings",
+          "group": "1_obsidify",
+          "when": "view == obsidify.backlinks || view == obsidify.outgoingLinks || view == obsidify.bookmarks"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "obsidify.renameBookmark",
+          "group": "navigation@1",
+          "when": "view == obsidify.bookmarks && viewItem == obsidify.bookmark"
+        },
+        {
+          "command": "obsidify.removeBookmark",
+          "group": "navigation@2",
+          "when": "view == obsidify.bookmarks && viewItem == obsidify.bookmark"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "obsidify.renameBookmark",
+          "when": "false"
+        },
+        {
+          "command": "obsidify.removeBookmark",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Obsidify",
+      "properties": {
+        "obsidify.vaultPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to the vault folder. When empty, the first VS Code workspace folder is used."
+        },
+        "obsidify.viewMode": {
+          "type": "string",
+          "enum": [
+            "list",
+            "tree"
+          ],
+          "default": "list",
+          "description": "Legacy shared setting. Replaced by the per-view settings below.",
+          "deprecationMessage": "Use obsidify.backlinks.viewMode, obsidify.outgoingLinks.viewMode, and obsidify.bookmarks.viewMode to configure each view independently."
+        },
+        "obsidify.sortOrder": {
+          "type": "string",
+          "enum": [
+            "nameAsc",
+            "nameDesc",
+            "pathAsc",
+            "linkOrder"
+          ],
+          "default": "nameAsc",
+          "description": "Legacy shared setting. Replaced by the per-view settings below.",
+          "deprecationMessage": "Use obsidify.backlinks.sortOrder, obsidify.outgoingLinks.sortOrder, and obsidify.bookmarks.sortOrder to configure each view independently."
+        },
+        "obsidify.backlinks.viewMode": {
+          "type": "string",
+          "enum": [
+            "list",
+            "tree"
+          ],
+          "default": "list",
+          "description": "Display Backlinks as a flat list or grouped by folder."
+        },
+        "obsidify.backlinks.sortOrder": {
+          "type": "string",
+          "enum": [
+            "nameAsc",
+            "nameDesc",
+            "pathAsc",
+            "linkOrder"
+          ],
+          "default": "nameAsc",
+          "description": "Sorting used by the Backlinks view."
+        },
+        "obsidify.outgoingLinks.viewMode": {
+          "type": "string",
+          "enum": [
+            "list",
+            "tree"
+          ],
+          "default": "list",
+          "description": "Display Outgoing Links as a flat list or grouped by folder."
+        },
+        "obsidify.outgoingLinks.sortOrder": {
+          "type": "string",
+          "enum": [
+            "nameAsc",
+            "nameDesc",
+            "pathAsc",
+            "linkOrder"
+          ],
+          "default": "nameAsc",
+          "description": "Sorting used by the Outgoing Links view."
+        },
+        "obsidify.bookmarks.viewMode": {
+          "type": "string",
+          "enum": [
+            "list",
+            "tree"
+          ],
+          "default": "list",
+          "description": "Display Bookmarks as a flat list or grouped by folder."
+        },
+        "obsidify.bookmarks.sortOrder": {
+          "type": "string",
+          "enum": [
+            "nameAsc",
+            "nameDesc",
+            "pathAsc",
+            "linkOrder"
+          ],
+          "default": "nameAsc",
+          "description": "Sorting used by the Bookmarks view. Link order means the order in which files were bookmarked."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "test": "npm run compile && node --test test/*.test.cjs",
+    "vscode:prepublish": "npm run compile",
+    "package": "node scripts/package.cjs",
+    "ci": "npm run compile && npm test && npm run package"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.5.4"
+  }
+}
